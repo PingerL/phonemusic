@@ -5,105 +5,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>蜗好南音乐</title>
-  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
-  <!-- <header>
-    <div class="search">音乐搜索</div>
-  </header> -->
   <main>
     <!-- 推荐页面 -->
-    <section class="s1">
-      <div class="loading">loading</div>
-      <div class="searchbox" style="display: none;">
+    <section class="recomend">
+      <h1>蜗好南音乐</h1>
+      <div class="content"></div>
+    </section>
+    <!-- 热门歌单详情页 -->
+    <section class="recomendlist"></section>
+    <!-- 歌手排行页面 -->
+    <section class="rank"></section>
+    <!-- 搜索页面 -->
+    <section class="search">
+      <div class="searchbox">
         <img src="./search.png" alt="">
         <input type="text" placeholder="请输入要搜索的歌名，歌手" >
       </div>
-      <div class="recomend"></div>
-    </section>
-    <!-- 音乐播放页面 -->
-    <section>
-      <div class="musicbox" style="display: none;">  
-        <div class="music">
-          <p>功能等待完善</p>
-          <div class="control">
-              <span class="back"><i class="fa fa-step-backward"></i></span>
-              <span class="play"><i class="fa fa-pause icon"></i></span>
-              <span class="forward"><i class="fa fa-step-forward"></i></span>
-          </div>
-          <!-- <div class="info">
-            <div class="title">My song</div>
-            <div class="author">Pinger</div>
-          </div> -->
-    
-          <!-- 音乐进度条 -->
-          <!-- <div class="progress">
-            <div class="bar">
-              <div class="progress-total"></div>
-              <div class="progress-now"></div>
-            </div>
-          </div>
-          <div class="time">0:00</div> -->
-        </div>
+      <div class="content">
+        
       </div>
     </section>
-    
   </main>
   <footer>
-    <span class="active">推荐歌单</span>
+    <span class="active">歌单推荐</span>
     <span>歌手排行</span>
     <span>搜索</span>
   </footer>
 </body>
 <script type="module">
-  // 热门歌单 
-  import { Recomend } from './recomend.js'
-  import { RecomendLists } from './recomendlists.js'
-  import { RecomendSong } from './recomendsong.js'
-  import { Rank } from './rank.js'
-  import { Search } from './search.js'
+  import { Recomend } from './js/recomend.js'
+  import { RecomendList } from './js/recomendlist.js'
+  import { Rank } from './js/rank.js'
+  import { Footer } from './js/footer.js'
 
-  let recomend = new Recomend(document.querySelector('.recomend')).launch()
-  let recomendlists = new RecomendLists(document.querySelector('.recomend')).launch()
-  let recomendsong = new RecomendSong(document.querySelector('.recomend')).launch()
+  let recomend = new Recomend(document.querySelector('.recomend'))
+  let recomendlist = new RecomendList(document.querySelector('.recomendlist'))
+  let footer = new Footer(document.querySelector('footer'))
 
-  let rank = new Rank(document.querySelector('.recomend'))
-  let search = new Search(document.querySelector('.recomend'))
 
-  let s1 = document.querySelector('.s1 .recomend')
-  let searchbox = document.querySelector('.searchbox')
-  let musicbox = document.querySelector('.musicbox')
-  let footer = document.querySelector('footer')
-  let tabbar = Array.from(document.querySelectorAll('footer span'))
-  footer.addEventListener('click', function (e) {
-    tabbar.forEach(tab => {
-      tab.classList.remove('active')
-    })
-    e.target.classList.add('active')
-
-    // s1.innerHTML = `<h1>${e.target.innerText}</h1>`
-    if (e.target.innerText === "推荐歌单") {
-      searchbox.style.display = "none"
-      s1.style.display = "flex"
-      let recomend = new Recomend(document.querySelector('.recomend')).launch()
-
-    } else if (e.target.innerText === "歌手排行") {
-      searchbox.style.display = "none"
-      s1.style.display = "block"
-      musicbox.style.display = 'none'
-
-      rank.launch()
-    } else {
-      searchbox.style.display = "block"
-      // s1.style.display = 'none'
-      search.launch()
-      // let recomendsong = new RecomendSong(document.querySelector('.recomend'))
-      // recomendsong.launch()
-
-    }
-  })
 
 
 </script>

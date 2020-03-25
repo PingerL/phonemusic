@@ -1,12 +1,15 @@
 export class Search {
   constructor(el) {
     this.$el = el
+    this.$content = el.querySelector('.content')
+    this.init()
+    this.playMusic()
   }
 
-  launch() {
+  init() {
+    this.initPage()
     let input = document.querySelector('input')
     let that = this
-    this.$el.innerHTML = ''
 
     input.addEventListener('keyup', function (event) {
       let keyword = event.target.value.trim()
@@ -19,17 +22,18 @@ export class Search {
         .then(res => res.json())
         .then(res => that.data = res.data.songs)
         .then(() => that.render())
-        event.target.value = ''
+      event.target.value = ''
     })
-    console.log(input)
-
   }
 
+  initPage() {
+    let sections = Array.from(document.querySelectorAll('section'))
+    sections.forEach(section => {
+      section.style.display = "none"
+    })
+    this.$el.style.display = "block"
+  }
   render() {
-    console.log(this.data)
-    let loading = document.querySelector('.loading')
-    loading.style.display = 'none'
-
     let html = `<p class="m60">搜索结果共 ${this.data.length} 首</p>`
     this.data.forEach((item, i) => {
       html += `
@@ -41,7 +45,26 @@ export class Search {
     `
     })
     html = `<ul>${html}</ul>`
-    this.$el.innerHTML = html
+    console.log(this.$content)
+    this.$content.innerHTML = html
+  }
+
+  playMusic(){
+    var audioObject
+    this.$el.addEventListener('click', (e) => {
+      if (e.target.tagName != "SPAN") return
+      let id = e.target.getAttribute('songid')
+      if (!id) return
+      if (this.onplaying) {
+        audioObject.pause()
+        this.onplaying = false
+        console.log('pause')
+      }
+      audioObject = new Audio(`https://v1.itooi.cn/netease/url?id=${id}&quality=flac`)
+      audioObject.play()
+      this.onplaying = true
+      console.log('play')
+    })
   }
 
 }

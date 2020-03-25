@@ -1,15 +1,92 @@
-/* common.css */
+/* common style */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-ul li {
+ul,li {
   list-style: none;
 }
 section {
-  margin-bottom: 60px;
+  padding: 10px;
+  padding-top: 0;
+  margin-bottom: 55px;
 }
+
+/* recomend  */
+.recomend h1 {
+  text-align: center;
+}
+.recomend .content{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+  padding-top: 0;
+}
+.recomend .content::after {
+  /* 用来处理 flex最后一行左对齐 */
+  content: '';
+  display: block;
+  flex: auto;
+}
+.recomend .content .list-box {
+  flex: 1;
+  width: 33vw;
+  margin: 5px;
+  margin-top: 10px;
+  box-shadow: 1px 1px 5px #ccc;
+}
+
+.list-box img {
+  width: 25vw;
+}
+.list-box p {
+  width: 25vw;
+  text-align: left;
+  font-size: 10px;
+  padding: 0 5px;
+  color: #666;
+}
+/* 推荐歌单详情页面 */
+.recomendlist ul,
+.rank ul,
+.search ul {
+  width: 100%;
+  padding: 20px;
+  padding-top: 0;
+}
+.recomendlist ul li,
+.rank ul li ,
+.search ul li {
+  width: 100%;
+  line-height: 20px;
+  position: relative;
+  padding: 10px;
+}
+.recomendlist .m-title ,
+.rank .m-title,
+.search .m-title{
+  width: 90%;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 10px;
+}
+.recomendlist ul li p ,
+.search ul li p{
+  color: olivedrab;
+  font-size: 10px;
+  margin-left: 10px;
+}
+.recomendlist .mr10,
+.rank .mr10 ,
+.search .mr10{
+  position: absolute;
+  left: -10px;
+}
+/* 搜索页面 */
 input {
   width: 90vw;
   border: 1px solid #ccc;
@@ -27,77 +104,21 @@ input {
   width: 100vw;
   background-color: black;
 }
-.m60 {
-  margin-top: 60px;
-}
 .searchbox img {
   width: 25px;
   position: absolute;
   top: 18px;
   left: 30px;
 }
-
-/* 推荐页面 */
-.recomend {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 10px;
-  padding-top: 0;
-}
-.recomend .list-box {
-  flex: 1;
-  margin-top: 10px;
-}
-.recomend::after {
-  /* 用来处理 flex最后一行左对齐 */
-  content: '';
-  display: block;
-  flex: auto;
-}
-.list-box img {
-  width: 30vw;
-}
-.list-box p {
-  width: 30vw;
-  font-size: 10px;
-  color: #666;
-}
-/* 推荐歌单详情页面 */
-.recomend ul {
-  width: 100%;
-  padding: 20px;
-  padding-top: 0;
-}
-.recomend ul li {
-  width: 100%;
-  line-height: 20px;
-  position: relative;
-  padding: 10px;
-}
-.recomend .m-title {
-  width: 90%;
-  display: inline-block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin-left: 10px;
-}
-ul li p {
-  color: olivedrab;
-  font-size: 10px;
-  margin-left: 10px;
-}
-.mr10 {
-  position: absolute;
-  left: -10px;
+.m60 {
+  margin-top: 60px;
 }
 /* 底部 tabbar 区域 */
 footer {
   height: 60px;
   width: 100vw;
   color: white;
-  background-color: #000;
+  background-color: gray;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -114,7 +135,7 @@ footer span {
 footer span.active {
   color: yellow;
 }
-/* 音乐播放详情页面 */
+/* 音乐播放详情页面 还没做 */
 .musicbox {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -166,3 +187,38 @@ footer span.active {
   display: block;
   clear: both;
 }
+
+
+/* loading 动画 */
+/* .loading {
+  height: 50px;
+  width: 50px;
+  margin: 0 auto;
+  margin-top: 45vw;
+  font-size: 10px;
+  text-align: center;
+  line-height: 50px;
+  background-color: red;
+  animation: stretch;
+  animation-duration: 1.5s; 
+  animation-timing-function: ease-out; 
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-fill-mode: none;
+  animation-play-state: running;
+}
+@keyframes stretch {
+  0% {
+    transform: scale(.3);
+    background-color: red;
+    border-radius: 100%;
+  }
+  50% {
+    background-color: orange;
+  }
+  100% {
+    transform: scale(1.5);
+    background-color: yellow;
+  }
+} */

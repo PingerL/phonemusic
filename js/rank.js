@@ -1,24 +1,26 @@
 export class Rank {
   constructor(el) {
     this.$el = el
+    this.init()
   }
 
-  launch() {
-    this.$el.innerHTML = ''
-    let loading = document.querySelector('.loading')
-    loading.style.display = 'block'
+  init() {
     fetch('https://v1.itooi.cn/netease/artist/top?page=0&pageSize=30',{
       mode:'cors'})
       .then(res => res.json())
       .then(res => this.data = res.data)
       .then(() => this.render())
   }
-
+  initPage(){
+    let sections = Array.from(document.querySelectorAll('section'))
+    sections.forEach(section => {
+      section.style.display = "none"
+    })
+    this.$el.style.display = "block"
+  }
   render() {
-    console.log(this.data)
-    let loading = document.querySelector('.loading')
-    loading.style.display = 'none'
-    let html = `<h4 style="padding:20px 10px ;background-color:black;margin:0 -30px;color:white;">歌手排行榜</h4>`
+    this.initPage()
+    let html = `<h4 style="padding:20px 10px ;background-color:gray;margin:0 -30px;color:white;">歌手排行榜</h4>`
     this.data.forEach((item,i) => {
       html += `
       <li>
